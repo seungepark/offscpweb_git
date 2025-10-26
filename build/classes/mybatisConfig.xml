@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<settings>
+		<setting name="cacheEnabled" value="true"/>
+    </settings>
+    
+    <typeAliases>
+    	<typeAlias alias="paramBean" type="com.ssshi.scpoff.dto.ParamBean"/>
+    	<typeAlias alias="userInfoBean" type="com.ssshi.scpoff.dto.UserInfoBean"/>
+    	<typeAlias alias="shipInfoBean" type="com.ssshi.scpoff.dto.ShipInfoBean"/>
+    	<typeAlias alias="domainBean" type="com.ssshi.scpoff.dto.DomainBean"/>
+    	<typeAlias alias="domainInfoBean" type="com.ssshi.scpoff.dto.DomainInfoBean"/>
+    	<typeAlias alias="schedulerInfoBean" type="com.ssshi.scpoff.dto.SchedulerInfoBean"/>
+    	<typeAlias alias="schedulerVersionInfoBean" type="com.ssshi.scpoff.dto.SchedulerVersionInfoBean"/>
+    	<typeAlias alias="scheDetailInfoBean" type="com.ssshi.scpoff.dto.SchedulerDetailInfoBean"/>
+	    <typeAlias alias="scheCrewBean" type="com.ssshi.scpoff.dto.ScheCrewBean" />
+	    <typeAlias alias="scheCrewListBean" type="com.ssshi.scpoff.dto.ScheCrewListBean" />
+	    <typeAlias alias="scheCrewInOutBean" type="com.ssshi.scpoff.dto.ScheCrewInOutBean" />
+	    <typeAlias alias="scheTrialInfoBean" type="com.ssshi.scpoff.dto.ScheTrialInfoBean" />
+	    <typeAlias alias="scheMailBean" type="com.ssshi.scpoff.dto.ScheMailBean" />
+	    <typeAlias alias="scheMailLogBean" type="com.ssshi.scpoff.dto.ScheMailLogBean" />
+	    <typeAlias alias="scheReportDepartureBean" type="com.ssshi.scpoff.dto.ScheReportDepartureBean" />
+	    <typeAlias alias="scheReportDailyBean" type="com.ssshi.scpoff.dto.ScheReportDailyBean" />
+	    <typeAlias alias="scheReportCompBean" type="com.ssshi.scpoff.dto.ScheReportCompBean" />
+	    <typeAlias alias="scheTcNoteBean" type="com.ssshi.scpoff.dto.ScheTcNoteBean" />
+	    <typeAlias alias="scheTcNoteFileInfoBean" type="com.ssshi.scpoff.dto.ScheTcNoteFileInfoBean" />
+	    <typeAlias alias="scheTcNoteTcInfoBean" type="com.ssshi.scpoff.dto.ScheTcNoteTcInfoBean" />
+	    <typeAlias alias="scheduleBean" type="com.ssshi.scpoff.dto.ScheduleBean" />
+	    <typeAlias alias="scheDateTimeBean" type="com.ssshi.scpoff.dto.ScheDateTimeBean" />
+	    <typeAlias alias="scheduleCodeDetailBean" type="com.ssshi.scpoff.dto.ScheduleCodeDetailBean" />
+	    <typeAlias alias="scheduleCodeInfoBean" type="com.ssshi.scpoff.dto.ScheduleCodeInfoBean" />
+	    <typeAlias alias="vsslReqInfoBean" type="com.ssshi.scpoff.dto.VesselReqInfoBean" />
+		<typeAlias alias="vsslReqInfoDetailBean" type="com.ssshi.scpoff.dto.VesselReqInfoDetailBean" />
+		<typeAlias alias="shipCondBean" type="com.ssshi.scpoff.dto.ShipCondBean" />
+		<typeAlias alias="scheHierarchyBean" type="com.ssshi.scpoff.dto.ScheduleHierarchyBean"/>
+		<typeAlias alias="mobileScheCrewBean" type="com.ssshi.scpoff.dto.MobileScheCrewBean"/>
+    </typeAliases>
+</configuration>

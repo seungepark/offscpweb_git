@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper      
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"      
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssshi.scpoff.mybatis.dao.GeneralDaoI">
+
+	<select id="login" parameterType="paramBean" resultType="userInfoBean">
+		SELECT ORGUID AS UID, SHIPINFOUID, USERID, PW, FIRSTNAME, LASTNAME, POSCODE, LANGCODE, STATUS, INSERTBY, INSERTDATE, UPDATEBY, UPDATEDATE
+		FROM OFFUSERINFO 
+		WHERE STATUS = 'ACT' AND USERID = #{uuid} AND PW = PASSWORD(#{pw})
+	</select>
+	
+	<delete id="deleteUser" parameterType="string">
+		DELETE FROM OFFUSERINFO WHERE USERID = #{userId}
+	</delete>
+	
+	<insert id="insertUser" parameterType="userInfoBean">
+		INSERT INTO OFFUSERINFO (ORGUID, DATASTATUS, SHIPINFOUID, USERID, PW, FIRSTNAME, LASTNAME, POSCODE, LANGCODE, STATUS, INSERTBY, INSERTDATE, UPDATEBY, UPDATEDATE)
+		VALUES (#{uid}, 'DOWN', #{shipInfoUid}, #{userId}, #{pw}, #{firstName}, #{lastName}, #{posCode}, #{langCode}, #{status}, #{insertBy}, SYSDATE(), #{updateBy}, SYSDATE())
+	</insert>
+	
+</mapper>
