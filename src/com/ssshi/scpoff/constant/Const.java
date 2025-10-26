@@ -20,8 +20,10 @@ package com.ssshi.scpoff.constant;
 
 public interface Const {
 	
-	String API_SCP_URL_ROOT = "http://127.0.0.1:8080/scp";
-	String DB_SCP_URL = "jdbc:mysql://127.0.0.1:3306/scp";
+	//String API_SCP_URL_ROOT = "http://127.0.0.1:8080/scp";
+	String API_SCP_URL_ROOT = "http://127.0.0.1:8090/scpweb_git/";
+	//String DB_SCP_URL = "jdbc:mysql://127.0.0.1:3306/scp";
+	String DB_SCP_URL = "jdbc:mysql://39.127.71.230:3306/scp";
 	String DB_SCP_USER = "scp";
 	String DB_SCP_PW = "shi1234";
 	
