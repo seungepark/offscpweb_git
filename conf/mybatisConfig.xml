@@ -38,6 +38,5 @@
 		<typeAlias alias="vsslReqInfoDetailBean" type="com.ssshi.scpoff.dto.VesselReqInfoDetailBean" />
 		<typeAlias alias="shipCondBean" type="com.ssshi.scpoff.dto.ShipCondBean" />
 		<typeAlias alias="scheHierarchyBean" type="com.ssshi.scpoff.dto.ScheduleHierarchyBean"/>
-		<typeAlias alias="mobileScheCrewBean" type="com.ssshi.scpoff.dto.MobileScheCrewBean"/>
     </typeAliases>
 </configuration>

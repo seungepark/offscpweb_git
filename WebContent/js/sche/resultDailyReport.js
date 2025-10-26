@@ -1006,12 +1006,14 @@ function submitReport() {
 		});
 		
         pdf.addImage(canvas.toDataURL('image/jpeg'), 'JPEG', 0, 0, canvas.width, canvas.height);
+		const innerImg = dataURLtoFile(canvas.toDataURL('image/jpeg'), 'innerImg.jpg');
 
 		html2canvas(document.getElementById('printArea2'), {}).then(canvas => {
 			pdf.addPage();
 	        pdf.addImage(canvas.toDataURL('image/jpeg'), 'JPEG', 0, 0, canvas.width, canvas.height); 
 			
 			formData.append('file', pdf.output('blob', {filename: 'scp_report.pdf'}));
+			formData.append('bodyImg', innerImg);
 
 			jQuery.ajax({
 				type: 'POST',

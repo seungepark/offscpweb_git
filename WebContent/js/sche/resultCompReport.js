@@ -268,12 +268,12 @@ function initData() {
 			chartDataTrialFuelCurr = ['', '', '', ''];
 		}
 		
-		chartLabelTrialFuel.push(_hullNum + ' ' + $.i18n.t('trialList.pred'));
+		chartLabelTrialFuel.push(_hullNum);
 		chartLabelTrialFuelTotal.push(Math.floor(parseFloat(tempTotalFuel) * 100) / 100);
 		chartDataTrialTime.push(isNanEmpty(_trialList.trialTime) ? 0 : parseFloat(_trialList.trialTime));
 		chartDataTrialTimeSeriesAvg += isNanEmpty(_trialList.trialTime) ? 0 : parseFloat(_trialList.trialTime);
 		chartBarColorTrialTime.push('#FFFFFF');
-		chartLabelTrialTime.push(_hullNum + ' ' + $.i18n.t('trialList.pred'));
+		chartLabelTrialTime.push(_hullNum);
 		
 		let isTrial1 = _trialList.trial1Uid > 0;
 		let isTrial2 = _trialList.trial2Uid > 0;
@@ -1641,12 +1641,14 @@ function submitReport() {
 		});
 		
         pdf.addImage(canvas.toDataURL('image/jpeg'), 'JPEG', 0, 0, canvas.width, canvas.height);
+		const innerImg = dataURLtoFile(canvas.toDataURL('image/jpeg'), 'innerImg.jpg');
 
 		html2canvas(document.getElementById('printArea2'), {}).then(canvas => {
 			pdf.addPage();
 	        pdf.addImage(canvas.toDataURL('image/jpeg'), 'JPEG', 0, 0, canvas.width, canvas.height); 
 			
 			formData.append('file', pdf.output('blob', {filename: 'scp_report.pdf'}));
+			formData.append('bodyImg', innerImg);
 
 			jQuery.ajax({
 				type: 'POST',

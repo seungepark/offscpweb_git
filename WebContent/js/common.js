@@ -1219,3 +1219,22 @@ function diffMinutes(start, end) {
 		return (eDate.getTime() - sDate.getTime()) / (1000 * 60);
 	}
 }
+
+function dataURLtoFile(dataURL, fileName) {
+  	const byteCharacters = atob(dataURL.split(',')[1]);
+  	const byteNumbers = new Array(byteCharacters.length);
+
+  	for(let i = 0; i < byteCharacters.length; i++) {
+    	byteNumbers[i] = byteCharacters.charCodeAt(i);
+  	}
+
+  	const byteArray = new Uint8Array(byteNumbers);
+  	const blob = new Blob([byteArray], { type: 'image/jpeg' });
+
+  	const file = new File([blob], fileName, {
+    	type: 'image/jpeg',
+    	lastModified: Date.now()
+  	});
+
+  	return file;
+}

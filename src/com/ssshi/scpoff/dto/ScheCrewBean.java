@@ -2,7 +2,6 @@ package com.ssshi.scpoff.dto;
 
 import java.util.List;
 
-
 public class ScheCrewBean {
 
 	private int uid;

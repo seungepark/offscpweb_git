@@ -744,20 +744,20 @@ function initData() {
   		},
 	};
 	
-	new Chart(document.getElementById('trialFuelGraph'), chartConfigTrialFuel);
-	
-	let trialFuelGraphTotalHtml = '<div></div>';
-	let trialFuelGraphTotalStyle = 'display: grid; grid-template-columns: 30px';
-	
-	for(let i = 0; i < chartLabelTrialFuelTotal.length; i++) {
-		trialFuelGraphTotalHtml += '<div class="text-center"><span class="report-graph-total-info">' + chartLabelTrialFuelTotal[i] + '</span></div>';
-		trialFuelGraphTotalStyle += ' 1fr';
-	}
-	
-	trialFuelGraphTotalStyle += ';';
-	
-	document.getElementById('trialFuelGraphTotal').style.cssText = trialFuelGraphTotalStyle;
-	$('#trialFuelGraphTotal').html(trialFuelGraphTotalHtml);
+//	new Chart(document.getElementById('trialFuelGraph'), chartConfigTrialFuel);
+//	
+//	let trialFuelGraphTotalHtml = '<div></div>';
+//	let trialFuelGraphTotalStyle = 'display: grid; grid-template-columns: 30px';
+//	
+//	for(let i = 0; i < chartLabelTrialFuelTotal.length; i++) {
+//		trialFuelGraphTotalHtml += '<div class="text-center"><span class="report-graph-total-info">' + chartLabelTrialFuelTotal[i] + '</span></div>';
+//		trialFuelGraphTotalStyle += ' 1fr';
+//	}
+//	
+//	trialFuelGraphTotalStyle += ';';
+//	
+//	document.getElementById('trialFuelGraphTotal').style.cssText = trialFuelGraphTotalStyle;
+//	$('#trialFuelGraphTotal').html(trialFuelGraphTotalHtml);
 
 	const chartConfigTrialTime = {
   		type: 'bar',
@@ -1350,6 +1350,7 @@ function submitReport() {
         pdf.addImage(canvas.toDataURL('image/jpeg'), 'JPEG', 0, 0, canvas.width, canvas.height);
 
         formData.append('file', pdf.output('blob', {filename: 'scp_report.pdf'}));
+		formData.append('bodyImg', dataURLtoFile(canvas.toDataURL('image/jpeg'), 'innerImg.jpg'));
 
 		jQuery.ajax({
 			type: 'POST',

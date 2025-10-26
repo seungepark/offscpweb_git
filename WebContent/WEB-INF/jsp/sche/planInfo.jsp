@@ -144,11 +144,11 @@
 											<table class="tb-style-view-none">
 												<tr>
 													<td>
-														<input id="itpTotalRemain" onkeyup="this.value=numberFormat(this.value, false, false, false)" type="text" data-i18n="[placeholder]share:data" value="${beanInfo.itpTotalRemain}">
+														<input id="itpTotalRemain" onkeyup="this.value=numberFormat(this.value, false, false, false)" type="text" data-i18n="[placeholder]itpPunch.rem" value="${beanInfo.itpTotalRemain}">
 													</td>
 													<td><span class="px-2">/</span></td>
 													<td>
-														<input id="itpTotalBase" onkeyup="this.value=numberFormat(this.value, false, false, false)" type="text" data-i18n="[placeholder]share:data" value="${beanInfo.itpTotalBase}">
+														<input id="itpTotalBase" onkeyup="this.value=numberFormat(this.value, false, false, false)" type="text" data-i18n="[placeholder]itpPunch.trem" value="${beanInfo.itpTotalBase}">
 													</td>
 												</tr>
 											</table>
@@ -157,11 +157,11 @@
 											<table class="tb-style-view-none">
 												<tr>
 													<td>
-														<input id="itpTrialRemain" onkeyup="this.value=numberFormat(this.value, false, false, false)" type="text" data-i18n="[placeholder]share:data" value="${beanInfo.itpTrialRemain}">
+														<input id="itpTrialRemain" onkeyup="this.value=numberFormat(this.value, false, false, false)" type="text" data-i18n="[placeholder]itpPunch.rem" value="${beanInfo.itpTrialRemain}">
 													</td>
 													<td><span class="px-2">/</span></td>
 													<td>
-														<input id="itpTrialBase" onkeyup="this.value=numberFormat(this.value, false, false, false)" type="text" data-i18n="[placeholder]share:data" value="${beanInfo.itpTrialBase}">
+														<input id="itpTrialBase" onkeyup="this.value=numberFormat(this.value, false, false, false)" type="text" data-i18n="[placeholder]itpPunch.trem" value="${beanInfo.itpTrialBase}">
 													</td>
 												</tr>
 											</table>
@@ -170,11 +170,11 @@
 											<table class="tb-style-view-none">
 												<tr>
 													<td>
-														<input id="itpOutfittingRemain" onkeyup="this.value=numberFormat(this.value, false, false, false)" type="text" data-i18n="[placeholder]share:data" value="${beanInfo.itpOutfittingRemain}">
+														<input id="itpOutfittingRemain" onkeyup="this.value=numberFormat(this.value, false, false, false)" type="text" data-i18n="[placeholder]itpPunch.rem" value="${beanInfo.itpOutfittingRemain}">
 													</td>
 													<td><span class="px-2">/</span></td>
 													<td>
-														<input id="itpOutfittingBase" onkeyup="this.value=numberFormat(this.value, false, false, false)" type="text" data-i18n="[placeholder]share:data" value="${beanInfo.itpOutfittingBase}">
+														<input id="itpOutfittingBase" onkeyup="this.value=numberFormat(this.value, false, false, false)" type="text" data-i18n="[placeholder]itpPunch.trem" value="${beanInfo.itpOutfittingBase}">
 													</td>
 												</tr>
 											</table>

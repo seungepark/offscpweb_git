@@ -4,6 +4,9 @@ import java.io.File;
 import java.util.Date;
 import java.util.Properties;
 
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
@@ -23,7 +26,7 @@ import com.ssshi.scpoff.dto.ScheMailLogBean;
  * 최초 작성일 : 2024-04-01
  * 
  * 최종 수정자 : KHJ
- * 최종 수정일 : 2024-05-19
+ * 최종 수정일 : 2025-09-07
  * 
  * 메모 : 없음
  * 
@@ -68,7 +71,7 @@ public class SmtpUtil {
 		
 		try {
 			MimeMessage msg = new MimeMessage(session);
-			MimeMultipart multipart = new MimeMultipart();
+			MimeMultipart multipart = new MimeMultipart("related");
 			MimeBodyPart bodyPart = new MimeBodyPart();
 			
 			msg.setFrom(new InternetAddress(FROM_MAIL));
@@ -76,6 +79,16 @@ public class SmtpUtil {
 			
 			bodyPart.setContent(bean.getDesc(), "text/html; charset=utf-8");
 			multipart.addBodyPart(bodyPart);
+			
+			if(bean.getBodyImg() != null) {
+				MimeBodyPart bodyImg = new MimeBodyPart();
+				File imgFile = new File("innerImg");
+				bean.getBodyImg().transferTo(imgFile.getAbsoluteFile());
+				DataSource ds = new FileDataSource(imgFile);
+				bodyImg.setDataHandler(new DataHandler(ds));
+				bodyImg.setHeader("Content-ID", "<innerImg>");
+				multipart.addBodyPart(bodyImg);				
+			}
 		
 			if(bean.getFile() != null) {
 				tempFile = new File(bean.getFileName());

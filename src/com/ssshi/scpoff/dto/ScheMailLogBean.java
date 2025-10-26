@@ -18,6 +18,7 @@ public class ScheMailLogBean {
 	String desc;
 	MultipartFile file;
 	String fileName;
+	MultipartFile bodyImg;
 	
 	public int getSchedulerInfoUid() {
 		return schedulerInfoUid;
@@ -96,5 +97,11 @@ public class ScheMailLogBean {
 	}
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
+	}
+	public MultipartFile getBodyImg() {
+		return bodyImg;
+	}
+	public void setBodyImg(MultipartFile bodyImg) {
+		this.bodyImg = bodyImg;
 	}
 }

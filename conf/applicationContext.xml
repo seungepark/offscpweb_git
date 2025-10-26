@@ -46,14 +46,9 @@
   		<property name="mapperLocations" value="classpath*:com/ssshi/scpoff/mybatis/*.xml" />
 	</bean>
 	
-	<bean id="MapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.ssshi.scpoff.mybatis.dao" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
 
-<!-- 	<bean id="MapperScannerConfigurer2" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.ssshi.scpoff.mobile.dao" />
-		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
-	</bean> -->
-	
 </beans>

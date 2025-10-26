@@ -89,21 +89,21 @@
 											<div class="sp-6"></div>
 											<div class="report-graph-title report-graph-content-w mx-auto" data-i18n="trialList.subtitle1"></div>
 											<div><canvas id="trialTimeGraph" class="mx-auto" style="width:95%; height:150px;"></canvas></div>
-											<div class="d-flex mx-auto report-graph-content-w">
-												<div class="flex-grow-1 report-graph-title" data-i18n="trialList.subtitle2"></div>
-												<div class="d-flex align-items-center">
-													<div class="report-fuel-box report-fuel-box-hfo"></div>
-													<div class="report-fuel-box-label" data-i18n="fuel.hfo"></div>
-													<div class="report-fuel-box report-fuel-box-mgo"></div>
-													<div class="report-fuel-box-label" data-i18n="fuel.mgo"></div>
-													<div class="report-fuel-box report-fuel-box-lng"></div>
-													<div class="report-fuel-box-label" data-i18n="fuel.lng"></div>
-													<div class="report-fuel-box report-fuel-box-mdo"></div>
-													<div class="report-fuel-box-label" data-i18n="fuel.mdo"></div>
-												</div>
-											</div>
-											<div><canvas id="trialFuelGraph" class="mx-auto" style="width:95%; height:150px;"></canvas></div>
-											<div id="trialFuelGraphTotal" class="mx-auto report-graph-content-w"></div>
+<!-- 											<div class="d-flex mx-auto report-graph-content-w"> -->
+<!-- 												<div class="flex-grow-1 report-graph-title" data-i18n="trialList.subtitle2"></div> -->
+<!-- 												<div class="d-flex align-items-center"> -->
+<!-- 													<div class="report-fuel-box report-fuel-box-hfo"></div> -->
+<!-- 													<div class="report-fuel-box-label" data-i18n="fuel.hfo"></div> -->
+<!-- 													<div class="report-fuel-box report-fuel-box-mgo"></div> -->
+<!-- 													<div class="report-fuel-box-label" data-i18n="fuel.mgo"></div> -->
+<!-- 													<div class="report-fuel-box report-fuel-box-lng"></div> -->
+<!-- 													<div class="report-fuel-box-label" data-i18n="fuel.lng"></div> -->
+<!-- 													<div class="report-fuel-box report-fuel-box-mdo"></div> -->
+<!-- 													<div class="report-fuel-box-label" data-i18n="fuel.mdo"></div> -->
+<!-- 												</div> -->
+<!-- 											</div> -->
+<%-- 											<div><canvas id="trialFuelGraph" class="mx-auto" style="width:95%; height:150px;"></canvas></div> --%>
+<!-- 											<div id="trialFuelGraphTotal" class="mx-auto report-graph-content-w"></div> -->
 										</div>
 		                            	<div class="report-section-title" data-i18n="crew.title"></div>
 		                            	<table class="report-tb">

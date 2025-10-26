@@ -81,7 +81,7 @@ import com.ssshi.scpoff.util.ValidUtil;
  * 최초 작성일 : 2024-07-17
  * 
  * 최종 수정자 : KHJ
- * 최종 수정일 : 2025-05-12
+ * 최종 수정일 : 2025-09-07
  * 
  * 메모 : 없음
  * 
@@ -1501,8 +1501,8 @@ public class ScheService implements ScheServiceI {
 										///-- 데이터 개정 추가 (25.02.26)					
 										
 										bean.setTitle("[SCP] " + scheBean.getHullnum() + " 해상 시운전 출항 보고 (" + scheBean.getDescription() + ")");
-										bean.setDesc("[SCP] " + scheBean.getHullnum() + " 해상 시운전 출항 보고입니다. (" + scheBean.getDescription() + ")");
-										bean.setFileName("scp_report.pdf");
+										bean.setDesc("[SCP] " + scheBean.getHullnum() + " 해상 시운전 출항 보고입니다. (" + scheBean.getDescription() + ")<br><br><img src=\"cid:innerImg\">");
+										bean.setFileName("[SCP] " + scheBean.getHullnum() + " 해상 시운전 출항 보고 (" + scheBean.getDescription() + ").pdf");
 										
 										try {
 											// 250317 추가 //
@@ -2627,8 +2627,8 @@ public class ScheService implements ScheServiceI {
 											
 											String date = CommonUtil.getDateStr(false);
 											bean.setTitle("[SCP " + date + "] " + scheBean.getHullnum() + " 해상 시운전 일일 보고 (" + scheBean.getDescription() + ")");
-											bean.setDesc("[SCP " + date + "] " + scheBean.getHullnum() + " 해상 시운전 일일 보고입니다. (" + scheBean.getDescription() + ")");
-											bean.setFileName("scp_report.pdf");
+											bean.setDesc("[SCP " + date + "] " + scheBean.getHullnum() + " 해상 시운전 일일 보고입니다. (" + scheBean.getDescription() + ")<br><br><img src=\"cid:innerImg\">");
+											bean.setFileName("[SCP " + date + "] " + scheBean.getHullnum() + " 해상 시운전 일일 보고 (" + scheBean.getDescription() + ").pdf");
 
 											try {
 												// 250317 추가 //
@@ -3157,8 +3157,8 @@ public class ScheService implements ScheServiceI {
 										///-- 데이터 개정 추가 (25.02.26)	
 										
 										bean.setTitle("[SCP] " + scheBean.getHullnum() + " 해상 시운전 완료 보고 (" + scheBean.getDescription() + ")");
-										bean.setDesc("[SCP] " + scheBean.getHullnum() + " 해상 시운전 완료 보고입니다. (" + scheBean.getDescription() + ")");
-										bean.setFileName("scp_report.pdf");
+										bean.setDesc("[SCP] " + scheBean.getHullnum() + " 해상 시운전 완료 보고입니다. (" + scheBean.getDescription() + ")<br><br><img src=\"cid:innerImg\">");
+										bean.setFileName("[SCP] " + scheBean.getHullnum() + " 해상 시운전 완료 보고 (" + scheBean.getDescription() + ").pdf");
 										
 										try {
 											// 250317 추가 //

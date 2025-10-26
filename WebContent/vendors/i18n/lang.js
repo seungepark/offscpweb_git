@@ -1809,7 +1809,9 @@ var RES_LANG = {
 				'punch': 'Punch<br>(Remain)',
 				'total': 'Total',
 				'trial': '시운전',
-				'outfit': '의장'
+				'outfit': '의장',
+				'trem': 'Total',
+				'rem': 'Remainder'
 			},
 			'trial': {
 				'title': '시운전 항목',
@@ -4260,7 +4262,9 @@ var RES_LANG = {
 				'punch': 'Punch<br>(Remain)',
 				'total': '전체',
 				'trial': '시운전',
-				'outfit': '의장'
+				'outfit': '의장',
+				'trem': '총수량',
+				'rem': '잔여'
 			},
 			'trial': {
 				'title': '시운전 항목',
