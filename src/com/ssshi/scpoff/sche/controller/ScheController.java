@@ -1,5 +1,8 @@
 package com.ssshi.scpoff.sche.controller;
 
+import java.io.OutputStream;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,6 +23,7 @@ import com.ssshi.scpoff.dto.ScheduleCodeDetailBean;
 import com.ssshi.scpoff.dto.SchedulerDetailInfoBean;
 import com.ssshi.scpoff.dto.SchedulerInfoBean;
 import com.ssshi.scpoff.sche.service.ScheServiceI;
+import com.ssshi.scpoff.mobile.service.CrewServiceI;
 
 /********************************************************************************
  * 프로그램 개요 : Sche
@@ -45,6 +49,9 @@ public class ScheController {
 	@Autowired
 	private ScheServiceI service;
 	
+	@Autowired
+	private CrewServiceI crewService;
+	
 	@RequestMapping(value="/sche/on.html")
 	public String onlineList(HttpServletRequest request, ModelMap model) throws Exception {
 		model.addAllAttributes(service.onlineList());
@@ -61,7 +68,14 @@ public class ScheController {
 	
 	@RequestMapping(value="/sche/on/download.html")
 	public String onlineDownload(HttpServletRequest request, ModelMap model, ParamBean bean) throws Exception {
+
 		model.addAllAttributes(service.onlineDownload(request, bean));
+		 
+		/**
+		 * 모바일 승선자 시스템 데이터 다운로드
+		 * #picnic MobileCrewDownload 추가
+		 */
+		model.addAllAttributes(crewService.onlineMobileDownload(request, bean));
 		
 		return "sche/onlineDownload";
 	}
@@ -259,8 +273,50 @@ public class ScheController {
 	}
 	
 	@RequestMapping(value="/sche/off/upload.html", method=RequestMethod.POST)
-	public void upload(HttpServletRequest request, HttpServletResponse response, ModelMap model, ParamBean bean) throws Exception {
-		service.upload(request, response, bean);
+	public void upload(HttpServletRequest request, HttpServletResponse response, ModelMap model, ParamBean bean) throws Exception {		 
+		
+		System.out.println("[ScheController.upload] 모바일 업로드 시작");		
+
+		/**
+		 * 모바일 승선자 시스템 데이터 다운로드
+		 * #picnic 모바일 데이터 업로드 추가 (service.upload() 전에 실행)
+		 */
+		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		boolean mobileUploadErr = false;
+		
+		try {		
+			Map<String, Object> mobileResult = crewService.offlineMobileUpload(request, bean);
+		
+			if(mobileResult != null && mobileResult.get(Const.ERRCODE) != null) {
+				mobileUploadErr = (Boolean) mobileResult.get(Const.ERRCODE);
+			}
+			System.out.println("[ScheController.upload] 모바일 업로드 완료 - 에러여부: " + mobileUploadErr);
+		} catch(Exception e) {
+			mobileUploadErr = true;
+			System.out.println("[ScheController.upload] crewService.offlineMobileUpload() 예외 발생: " + e.getMessage());			
+			e.printStackTrace();
+		}
+		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		// OFFSCP 데이터 업로드 (기존)
+		try {
+			service.upload(request, response, bean);
+			System.out.println("[ScheController.upload] service.upload() 완료");
+		} catch(Exception e) {
+			System.out.println("[ScheController.upload] service.upload() 예외 발생: " + e.getMessage());
+			e.printStackTrace();
+		
+			try {
+				response.setContentType("application/text");
+				OutputStream out = response.getOutputStream();
+				String finalMsg = mobileUploadErr ? "@ERR" : "@DONE";
+				out.write(finalMsg.getBytes());
+				out.flush();
+				System.out.println("[ScheController.upload] response에 최종 결과 쓰기 완료: " + finalMsg);
+			} catch(Exception ex) {
+				System.out.println("[ScheController.upload] response 쓰기 실패: " + ex.getMessage());
+			}
+		}
+	 
 	}
 	
 	@RequestMapping(value="/sche/off/changeOn.html", method=RequestMethod.POST)

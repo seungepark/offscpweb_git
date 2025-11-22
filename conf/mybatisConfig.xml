@@ -7,6 +7,7 @@
 <configuration>
 	<settings>
 		<setting name="cacheEnabled" value="true"/>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
     
     <typeAliases>
@@ -38,5 +39,16 @@
 		<typeAlias alias="vsslReqInfoDetailBean" type="com.ssshi.scpoff.dto.VesselReqInfoDetailBean" />
 		<typeAlias alias="shipCondBean" type="com.ssshi.scpoff.dto.ShipCondBean" />
 		<typeAlias alias="scheHierarchyBean" type="com.ssshi.scpoff.dto.ScheduleHierarchyBean"/>
+		
+		<typeAlias alias="mobileScheCrewBean" type="com.ssshi.scpoff.mobile.dto.MobileScheCrewBean" />
+		<typeAlias alias="mobileScheCrewDetailBean" type="com.ssshi.scpoff.mobile.dto.MobileScheCrewDetailBean" />
+		<typeAlias alias="mobileRoomInfoBean" type="com.ssshi.scpoff.mobile.dto.MobileRoomInfoBean" />
+		<typeAlias alias="mobileRoomUserlistBean" type="com.ssshi.scpoff.mobile.dto.MobileRoomUserlistBean" />
+		<typeAlias alias="mobileLiftBoatInfoBean" type="com.ssshi.scpoff.mobile.dto.MobileLiftBoatInfoBean" />
+		<typeAlias alias="mobileLiftBoatCrewInfoBean" type="com.ssshi.scpoff.mobile.dto.MobileLiftBoatCrewInfoBean" />
+		<typeAlias alias="mobileNotificationBean" type="com.ssshi.scpoff.mobile.dto.MobileNotificationBean" />
+		<typeAlias alias="mobileOfflineCommandInfoBean" type="com.ssshi.scpoff.mobile.dto.MobileOfflineCommandInfoBean" />
+		<typeAlias alias="mobileMealUserinfoBean" type="com.ssshi.scpoff.mobile.dto.MobileMealUserinfoBean" />
+		<typeAlias alias="mobileMealSmsUserinfoBean" type="com.ssshi.scpoff.mobile.dto.MobileMealSmsUserinfoBean" />
     </typeAliases>
 </configuration>

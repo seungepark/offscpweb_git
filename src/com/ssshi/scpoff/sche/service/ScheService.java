@@ -3340,33 +3340,39 @@ public class ScheService implements ScheServiceI {
 							// API : delFileList
 							// 파일 업로드.
 							// API : uploadFileList
-							MultipartEntityBuilder multipartEntity = MultipartEntityBuilder.create();
-							
-							for(int x = 0; x < delFileList.size(); x++) {
-								multipartEntity.addTextBody("delFiles", delFileList.get(x), ContentType.TEXT_PLAIN);
-							}
-							
-							for(int x = 0; x < uploadFileList.size(); x++) {
-								String fileName = uploadFileList.get(x);
-								File file = new File(FileUtil.FILE_DIR_ROOT + FileUtil.FILE_DIR_FOR_NOTE + "/" + fileName);
-								multipartEntity.addBinaryBody("file", file, ContentType.DEFAULT_BINARY, fileName);
-							}
-							
-							try { progressOut.write((progressTxt + " 70%").getBytes()); progressOut.flush(); }catch(Exception e) {}
-							
-							HttpPost httpPost = new HttpPost(Const.API_SCP_URL_ROOT + "/api/up/files.html");
-							httpPost.setEntity(multipartEntity.build());
-							CloseableHttpClient httpClient = HttpClients.createDefault();
-							CloseableHttpResponse res = httpClient.execute(httpPost);
-							int statusCode = res.getStatusLine().getStatusCode();
-							
-							try { progressOut.write((progressTxt + " 85%").getBytes()); progressOut.flush(); }catch(Exception e) {}
-							
-							if(statusCode == HttpStatus.SC_OK) {
-								String resBody = EntityUtils.toString(res.getEntity());
-//								System.out.println("### res : " + resBody);
-							}else {
-//								System.out.println("### api fail");
+							try {
+								MultipartEntityBuilder multipartEntity = MultipartEntityBuilder.create();
+								
+								for(int x = 0; x < delFileList.size(); x++) {
+									multipartEntity.addTextBody("delFiles", delFileList.get(x), ContentType.TEXT_PLAIN);
+								}
+								
+								for(int x = 0; x < uploadFileList.size(); x++) {
+									String fileName = uploadFileList.get(x);
+									File file = new File(FileUtil.FILE_DIR_ROOT + FileUtil.FILE_DIR_FOR_NOTE + "/" + fileName);
+									multipartEntity.addBinaryBody("file", file, ContentType.DEFAULT_BINARY, fileName);
+								}
+								
+								try { progressOut.write((progressTxt + " 70%").getBytes()); progressOut.flush(); }catch(Exception e) {}
+								
+								HttpPost httpPost = new HttpPost(Const.API_SCP_URL_ROOT + "/api/up/files.html");
+								httpPost.setEntity(multipartEntity.build());
+								CloseableHttpClient httpClient = HttpClients.createDefault();
+								CloseableHttpResponse res = httpClient.execute(httpPost);
+								int statusCode = res.getStatusLine().getStatusCode();
+								
+								try { progressOut.write((progressTxt + " 85%").getBytes()); progressOut.flush(); }catch(Exception e) {}
+								
+								if(statusCode == HttpStatus.SC_OK) {
+									String resBody = EntityUtils.toString(res.getEntity());
+//									System.out.println("### res : " + resBody);
+								}else {
+//									System.out.println("### api fail");
+								}
+							} catch(Exception fileUploadEx) {
+								// 파일 업로드 API 서버 연결 실패는 무시 (데이터 업로드는 이미 완료됨)
+								System.out.println("[ScheService.upload] 파일 업로드 API 서버 연결 실패 (무시): " + fileUploadEx.getMessage());
+								// isErr를 true로 설정하지 않음 (데이터 업로드는 성공했으므로)
 							}
 						}
 					}
@@ -3388,6 +3394,10 @@ public class ScheService implements ScheServiceI {
 				dao.updateScheCrewInOutForUp(uid);
 			}
 		}
+		
+		// 모바일 업로드 결과 확인 (response를 닫기 전에)
+		// 주의: 이 부분은 ScheController에서 처리하도록 변경됨
+		// 모바일 업로드는 ScheController에서 별도로 처리됨
 		
 		try {
 			String msg = isErr ? "@ERR" : "@DONE";

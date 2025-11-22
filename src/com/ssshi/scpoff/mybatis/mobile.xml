@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper      
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"      
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.ssshi.scpoff.mybatis.dao.MobileDaoI"> 
+ 
+	
+	<delete id="deleteMobileScheCrewDetail" parameterType="int">
+		DELETE FROM OFFSCHECREWDETAILINFO WHERE SCHEDULERINFOUID = #{schedulerInfoUid}
+	</delete>
+	
+	<insert id="insertMobileScheCrewDetail" parameterType="mobileScheCrewDetailBean">
+		INSERT INTO OFFSCHECREWDETAILINFO (
+			SCHECREWUID, SCHEDULERINFOUID, ROLE1, ROLE2, TERMINAL, NOTEBOOK
+			, MODEL_NAME, SERIAL_NUMBER, FOREIGNER, PASSPORT_NUMBER, ORDER_STATUS
+			, ORDER_DATE, ORDER_UID, DELETE_YN, DELETE_DATE, DELETE_UID, QR_YN, REG_DATE)
+		VALUES (#{scheCrewUid}, #{schedulerInfoUid}, #{role1}, #{role2}, #{terminal}, #{notebook}
+			, #{modelName}, #{serialNumber}, #{foreigner}, #{passportNumber}, #{orderStatus}
+			, #{orderDate}, #{orderUid}, #{deleteYn}, #{deleteDate}, #{deleteUid}, #{qrYn}, #{regDate})
+	</insert>
+	
+	<delete id="deleteMobileRoomInfo" parameterType="int">
+		DELETE FROM OFFMOBILE_ROOM_INFO WHERE SCHEDULERINFOUID = #{schedulerInfoUid}
+	</delete>
+	
+	<insert id="insertMobileRoomInfo" parameterType="mobileRoomInfoBean">
+		INSERT INTO OFFMOBILE_ROOM_INFO (
+			PROJ_NO, SCHEDULERINFOUID, TRIALKEY, DECK, ROOM_NO, ROOM_NAME
+			, TEL, SIZE_M2, BED_COUNT, BATHROOM_YN, STATUS, DEL_YN
+			, ANDROID_ID, MOBILE_DEVICE_ID, INSERT_DATE, REG_USERNAME, UPDATE_DATE, UPDATE_USERNAME)
+		VALUES (#{projNo}, #{schedulerInfoUid}, #{trialKey}, #{deck}, #{roomNo}, #{roomName}
+			, #{tel}, #{sizeM2}, #{bedCount}, #{bathroomYn}, #{status}, #{delYn}
+			, #{androidId}, #{mobileDeviceId}, #{insertDate}, #{regUsername}, #{updateDate}, #{updateUsername})
+	</insert>
+	
+	<delete id="deleteMobileRoomUserlist" parameterType="int">
+		DELETE FROM OFFMOBILE_ROOM_USERLIST WHERE SCHEDULERINFOUID = #{schedulerInfoUid}
+	</delete>
+	
+	<insert id="insertMobileRoomUserlist" parameterType="mobileRoomUserlistBean">
+		INSERT INTO OFFMOBILE_ROOM_USERLIST (
+			PROJ_NO, SCHEDULERINFOUID, TRIALKEY, ROOM_NO, DEPARTMENT, NAME
+			, PHONE, USER_UID, CHECK_IN_DATE, CHECK_OUT_DATE, STATUS, DEL_YN
+			, ANDROID_ID, MOBILE_DEVICE_ID, INSERT_DATE, REG_USERNAME, UPDATE_DATE, UPDATE_USERNAME, REMARK)
+		VALUES (#{projNo}, #{schedulerInfoUid}, #{trialKey}, #{roomNo}, #{department}, #{name}
+			, #{phone}, #{userUid}, #{checkInDate}, #{checkOutDate}, #{status}, #{delYn}
+			, #{androidId}, #{mobileDeviceId}, #{insertDate}, #{regUsername}, #{updateDate}, #{updateUsername}, #{remark})
+	</insert>
+	
+	<delete id="deleteMobileLiftBoatInfo" parameterType="int">
+		DELETE FROM OFFMOBILE_LIFT_BOAT_INFO WHERE SCHEDULERINFOUID = #{schedulerInfoUid}
+	</delete>
+	
+	<insert id="insertMobileLiftBoatInfo" parameterType="mobileLiftBoatInfoBean">
+		INSERT INTO OFFMOBILE_LIFT_BOAT_INFO (
+			PROJ_NO, SCHEDULERINFOUID, TRIALKEY, LIFTBOAT_CNT, LIFTBOAT_HEADCNT
+			, LIFTRAFT_CNT, LIFTRAFT_HEADCNT, ANDROID_ID, INSERT_DATE, INSERTBY, REG_DEVICE)
+		VALUES (#{projNo}, #{schedulerInfoUid}, #{trialKey}, #{liftboatCnt}, #{liftboatHeadcnt}
+			, #{liftraftCnt}, #{liftraftHeadcnt}, #{androidId}, #{insertDate}, #{insertby}, #{regDevice})
+	</insert>
+	
+	<delete id="deleteMobileLiftBoatCrewinfo" parameterType="int">
+		DELETE FROM OFFMOBILE_LIFT_BOAT_CREWINFO WHERE SCHEDULERINFOUID = #{schedulerInfoUid}
+	</delete>
+	
+	<insert id="insertMobileLiftBoatCrewinfo" parameterType="mobileLiftBoatCrewinfoBean">
+		INSERT INTO OFFMOBILE_LIFT_BOAT_CREWINFO (
+			PROJ_NO, SCHEDULERINFOUID, TRIALKEY, BOAT_NAME, USER_UID
+			, ROLE, ANDROID_ID, INSERT_DATE, INSERTBY, REG_DEVICE)
+		VALUES (#{projNo}, #{schedulerInfoUid}, #{trialKey}, #{boatName}, #{userUid}
+			, #{role}, #{androidId}, #{insertDate}, #{insertBy}, #{regDevice})
+	</insert>
+	
+	<delete id="deleteMobileNotification" parameterType="int">
+		DELETE FROM OFFMOBILE_NOTIFICATION WHERE SCHEDULERINFOUID = #{schedulerInfoUid}
+	</delete>
+	
+	<insert id="insertMobileNotification" parameterType="mobileNotificationBean">
+		INSERT INTO OFFMOBILE_NOTIFICATION (
+			NOTICEID, PROJ_NO, TRIALKEY, SCHEDULERINFOUID, TYPECODE
+			, NCONTENT, STATCODE, START_DT, FINISHDT, DELETEYN
+			, AUTHORID, CREATEDT, EDITORID, UPDATEDT)
+		VALUES (#{noticeid}, #{projNo}, #{trialKey}, #{schedulerInfoUid}, #{typecode}
+			, #{ncontent}, #{statcode}, #{startDt}, #{finishdt}, #{deleteyn}
+			, #{authorid}, #{createdt}, #{editorid}, #{updatedt})
+	</insert>
+	
+	<delete id="deleteMobileOfflineCommandInfo" parameterType="int">
+		DELETE FROM OFFMOBILE_OFFLINE_COMMAND_INFO WHERE SCHEDULERINFOUID = #{schedulerInfoUid}
+	</delete>
+	
+	<insert id="insertMobileOfflineCommandInfo" parameterType="mobileOfflineCommandInfoBean">
+		INSERT INTO OFFMOBILE_OFFLINE_COMMAND_INFO (
+			PROJ_NO, SCHEDULERINFOUID, TRIALKEY, COMMAND_IP, COMMAND_PORT
+			, ANDROID_ID, INSERT_DATE, INSERTBY, REG_DEVICE)
+		VALUES (#{projNo}, #{schedulerInfoUid}, #{trialKey}, #{commandIp}, #{commandPort}
+			, #{androidId}, #{insertDate}, #{insertby}, #{regDevice})
+	</insert>
+	
+	<!-- 오프라인 DB 조회 (업로드용) -->
+	<select id="upMobileScheCrewdetail" parameterType="String" resultType="mobileScheCrewDetailBean">
+		SELECT UID, SCHECREWUID, SCHEDULERINFOUID, ROLE1, ROLE2, TERMINAL, NOTEBOOK
+			, MODEL_NAME, SERIAL_NUMBER, FOREIGNER, PASSPORT_NUMBER, ORDER_STATUS
+			, ORDER_DATE, ORDER_UID, DELETE_YN, DELETE_DATE, DELETE_UID, QR_YN, REG_DATE
+		FROM OFFSCHECREWDETAILINFO
+		WHERE SCHEDULERINFOUID IN (${_parameter})
+	</select>
+	
+	<select id="upMobileRoomInfo" resultType="mobileRoomInfoBean">
+		SELECT UID, PROJ_NO AS projNo, SCHEDULERINFOUID AS schedulerInfoUid, TRIALKEY AS trialKey, DECK AS deck, ROOM_NO AS roomNo, ROOM_NAME AS roomName
+			, TEL AS tel, SIZE_M2 AS sizeM2, BED_COUNT AS bedCount, BATHROOM_YN AS bathroomYn, STATUS AS status, DEL_YN AS delYn
+			, ANDROID_ID AS androidId, MOBILE_DEVICE_ID AS mobileDeviceId, INSERT_DATE AS insertDate, REG_USERNAME AS regUsername, UPDATE_DATE AS updateDate, UPDATE_USERNAME AS updateUsername
+		FROM OFFMOBILE_ROOM_INFO
+		WHERE SCHEDULERINFOUID IN (${_parameter})
+	</select>
+	
+	<select id="upMobileRoomUserlist" resultType="mobileRoomUserlistBean">
+		SELECT UID, PROJ_NO, SCHEDULERINFOUID, TRIALKEY, ROOM_NO, DEPARTMENT, NAME
+			, PHONE, USER_UID, CHECK_IN_DATE, CHECK_OUT_DATE, STATUS, DEL_YN
+			, ANDROID_ID, MOBILE_DEVICE_ID, INSERT_DATE, REG_USERNAME, UPDATE_DATE, UPDATE_USERNAME, REMARK
+		FROM OFFMOBILE_ROOM_USERLIST
+		WHERE SCHEDULERINFOUID IN (${_parameter})
+	</select>
+	
+	<select id="upMobileLiftBoatInfo" resultType="mobileLiftBoatInfoBean">
+		SELECT UID, PROJ_NO, SCHEDULERINFOUID, TRIALKEY, LIFTBOAT_CNT, LIFTBOAT_HEADCNT
+			, LIFTRAFT_CNT, LIFTRAFT_HEADCNT, ANDROID_ID, INSERT_DATE, INSERTBY, REG_DEVICE
+		FROM OFFMOBILE_LIFT_BOAT_INFO
+		WHERE SCHEDULERINFOUID IN (${_parameter})
+	</select>
+	
+	<select id="upMobileLiftBoatCrewinfo" resultType="mobileLiftBoatCrewInfoBean">
+		SELECT UID, PROJ_NO, SCHEDULERINFOUID, TRIALKEY, BOAT_NAME, USER_UID
+			, ROLE, ANDROID_ID, INSERT_DATE, INSERTBY, REG_DEVICE
+		FROM OFFMOBILE_LIFT_BOAT_CREWINFO
+		WHERE SCHEDULERINFOUID IN (${_parameter})
+	</select>
+	
+	<select id="upMobileNotification" resultType="mobileNotificationBean">
+		SELECT ORIID, NOTICEID, PROJ_NO, TRIALKEY, SCHEDULERINFOUID, TYPECODE
+			, NCONTENT, STATCODE, START_DT, FINISHDT, DELETEYN
+			, AUTHORID, CREATEDT, EDITORID, UPDATEDT
+		FROM OFFMOBILE_NOTIFICATION
+		WHERE SCHEDULERINFOUID IN (${_parameter})
+	</select>
+	
+	<select id="upMobileOfflineCommandInfo" resultType="mobileOfflineCommandInfoBean">
+		SELECT UID, PROJ_NO, SCHEDULERINFOUID, TRIALKEY, COMMAND_IP, COMMAND_PORT
+			, ANDROID_ID, INSERT_DATE, INSERTBY, REG_DEVICE
+		FROM OFFMOBILE_OFFLINE_COMMAND_INFO
+		WHERE SCHEDULERINFOUID IN (${_parameter})
+	</select>
+	
+	<select id="upMobileMealUserinfo" resultType="mobileMealUserinfoBean">
+		SELECT UID, PROJ_NO, SCHEDULERINFOUID, TRIALKEY, SCHEUSERUID, DEPT_NAME
+			, MEAL_TIME, MEAL_GUBUN, MEAL_DATE, QR_YN
+			, ANDROID_ID, MOBILE_DEVICE_ID, INSERTBY, INSERTDATE, UPDATEBY, UPDATEDATE
+		FROM OFFMOBILE_MEAL_USERINFO
+		WHERE SCHEDULERINFOUID IN (${_parameter})
+	</select>
+	
+	<select id="upMobileMealSmsUserinfo" resultType="mobileMealSmsUserinfoBean">
+		SELECT UID, PROJ_NO, SCHEDULERINFOUID, TRIALKEY, ANCHOR_MEAL_UID, REG_USERNAME
+			, PHONE, INSERT_DATE, REG_DEVICE, SMSYN, SMSR_RETURN, SMS_INSERT_DATE
+		FROM OFFMOBILE_MEAL_SMS_USERINFO
+		WHERE SCHEDULERINFOUID IN (${_parameter})
+	</select>
+ 
+</mapper>
+
+
