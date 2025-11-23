@@ -4,6 +4,7 @@ public class ScheCrewInOutBean {
 
 	private int uid;
 	private int scheCrewUid;
+	private int schedulerInfoUid;
 	private String inOutDate;
 	private String schedulerInOut;
 	private String performanceInOut;
@@ -31,6 +32,12 @@ public class ScheCrewInOutBean {
 	}
 	public void setScheCrewUid(int scheCrewUid) {
 		this.scheCrewUid = scheCrewUid;
+	}
+	public int getSchedulerInfoUid() {
+		return schedulerInfoUid;
+	}
+	public void setSchedulerInfoUid(int schedulerInfoUid) {
+		this.schedulerInfoUid = schedulerInfoUid;
 	}
 	public String getInOutDate() {
 		return inOutDate;

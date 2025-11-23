@@ -666,10 +666,11 @@ public class ScheDao {
 		ResultSet rs = null;
 		
 		try {
-			String sql = "SELECT UID, SCHECREWUID, INOUTDATE, SCHEDULERINOUT, PERFORMANCEINOUT" + 
-					"		, INSERTDATE, INSERTBY, UPDATEDATE, UPDATEBY" + 
-					"	FROM SCHECREWINOUT" + 
-					"	WHERE SCHECREWUID IN (" + uidList + ")";
+			String sql = "SELECT SCIO.UID, SCIO.SCHECREWUID, SC.SCHEDULERINFOUID, SCIO.INOUTDATE, SCIO.SCHEDULERINOUT, SCIO.PERFORMANCEINOUT" + 
+					"		, SCIO.INSERTDATE, SCIO.INSERTBY, SCIO.UPDATEDATE, SCIO.UPDATEBY" + 
+					"	FROM SCHECREWINOUT SCIO" + 
+					"		INNER JOIN SCHECREW SC ON SCIO.SCHECREWUID = SC.UID" +
+					"	WHERE SCIO.SCHECREWUID IN (" + uidList + ")";
 			
 			conn = DriverManager.getConnection(Const.DB_SCP_URL, Const.DB_SCP_USER, Const.DB_SCP_PW);
 			stmt = conn.prepareStatement(sql);
@@ -680,6 +681,7 @@ public class ScheDao {
 				ScheCrewInOutBean row = new ScheCrewInOutBean();
 				row.setUid(rs.getInt(idx++));
 				row.setScheCrewUid(rs.getInt(idx++));
+				row.setSchedulerInfoUid(rs.getInt(idx++));
 				row.setInOutDate(rs.getString(idx++));
 				row.setSchedulerInOut(rs.getString(idx++));
 				row.setPerformanceInOut(rs.getString(idx++));
