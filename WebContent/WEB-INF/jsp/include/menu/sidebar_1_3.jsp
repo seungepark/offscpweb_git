@@ -17,16 +17,16 @@
    		</div>
    		<div id="main-1-collapse" class="collapse show">
        		<a onclick="delSearchCookie()" href="${pageContext.request.contextPath}/sche/on.html">
-       			<div class="sub-item-wrap sub-item-active">
-	           		<span class="sub-item-active-bar"></span>
-	           		<span class="sub-item-active-title" data-i18n="share:sidebar.main1.sub1"></span>
-	       		</div>
+       			<div class="sub-item-wrap sub-item" data-i18n="share:sidebar.main1.sub1"></div>
        		</a>
        		<a onclick="delSearchCookie()" href="${pageContext.request.contextPath}/sche/off.html">
 	       		<div class="sub-item-wrap sub-item" data-i18n="share:sidebar.main1.sub2"></div>
        		</a>
        		<a onclick="delSearchCookie()" href="${pageContext.request.contextPath}/mobile/offCrew.html">
-       			<div class="sub-item-wrap sub-item" data-i18n="share:sidebar.main1.sub3"></div>
+       			<div class="sub-item-wrap sub-item-active">
+	           		<span class="sub-item-active-bar"></span>
+	           		<span class="sub-item-active-title" data-i18n="share:sidebar.main1.sub3"></span>
+	       		</div>
        		</a>
    		</div>
    	</div>

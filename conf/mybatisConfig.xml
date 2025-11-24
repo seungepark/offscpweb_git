@@ -50,5 +50,8 @@
 		<typeAlias alias="mobileOfflineCommandInfoBean" type="com.ssshi.scpoff.mobile.dto.MobileOfflineCommandInfoBean" />
 		<typeAlias alias="mobileMealUserinfoBean" type="com.ssshi.scpoff.mobile.dto.MobileMealUserinfoBean" />
 		<typeAlias alias="mobileMealSmsUserinfoBean" type="com.ssshi.scpoff.mobile.dto.MobileMealSmsUserinfoBean" />
+		
+		<typeAlias alias="RegistrationCrewQtyBean" type="com.ssshi.scpoff.dto.RegistrationCrewQtyBean" />
+	    <typeAlias alias="RegistrationCrewRequestBean" type="com.ssshi.scpoff.dto.RegistrationCrewRequestBean" />
     </typeAliases>
 </configuration>

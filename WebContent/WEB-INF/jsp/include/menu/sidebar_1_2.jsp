@@ -25,6 +25,9 @@
 	           		<span class="sub-item-active-title" data-i18n="share:sidebar.main1.sub2"></span>
 	       		</div>
        		</a>
+       		<a onclick="delSearchCookie()" href="${pageContext.request.contextPath}/mobile/offCrew.html">
+       			<div class="sub-item-wrap sub-item" data-i18n="share:sidebar.main1.sub3"></div>
+       		</a>
    		</div>
    	</div>
 </div>

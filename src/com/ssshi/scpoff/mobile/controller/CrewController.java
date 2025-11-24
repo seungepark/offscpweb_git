@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ssshi.scpoff.dto.RegistrationCrewRequestBean;
 import com.ssshi.scpoff.mobile.service.CrewServiceI; 
 /********************************************************************************
  * 프로그램 개요 : 모바일 승선자 시스템 데이터 동기화 서비스 온라인(SCP OnLine)<->오프라인 (코멘더 노트북)
@@ -31,5 +32,20 @@ public class CrewController {
 	@Autowired
 	private CrewServiceI service;
 	
+	//Main(실적 확인_시운전)
+	@RequestMapping(value="/mobile/offCrew.html")
+	public String crewResultMeal(HttpServletRequest request, ModelMap model, RegistrationCrewRequestBean bean) throws Exception {
+		model.addAllAttributes(service.crewResultMeal(request, bean));
+		
+		return "crew/crewResultMeal";
+	}
+	
+	//시운전 실적 리스트 조회
+	@RequestMapping(value="/mobile/getCrewMealResultList.html")
+	public String getCrewMealResultList(HttpServletRequest request, ModelMap model, RegistrationCrewRequestBean bean) throws Exception {
+		model.addAllAttributes(service.crewResultMeal(request, bean));
+		
+		return "crew/getMealResultList";
+	}
 	 
 }

@@ -1104,9 +1104,9 @@
 	
 	<insert id="insertScheCrewInOutForDown" parameterType="scheCrewInOutBean">
 		INSERT INTO	OFFSCHECREWINOUT (
-			ORGUID, DATASTATUS, SCHECREWUID, INOUTDATE, SCHEDULERINOUT, PERFORMANCEINOUT, 
+			ORGUID, DATASTATUS, SCHECREWUID, SCHEDULERINFOUID, INOUTDATE, SCHEDULERINOUT, PERFORMANCEINOUT, 
 			INSERTDATE, INSERTBY, UPDATEDATE, UPDATEBY)
-		VALUES (#{uid}, 'DOWN', #{scheCrewUid}, #{inOutDate}, #{schedulerInOut}, #{performanceInOut}, 
+		VALUES (#{uid}, 'DOWN', #{scheCrewUid}, #{schedulerInfoUid}, #{inOutDate}, #{schedulerInOut}, #{performanceInOut}, 
 			#{insertDate}, #{insertBy}, #{updateDate}, #{updateBy})
 	</insert>
 	

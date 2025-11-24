@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper      
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"      
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.ssshi.scpoff.mybatis.dao.CrewDaoI"> 
+
+	<select id="getShipList" resultType="domainInfoBean">
+		<!-- UID, trialKey, shipType -->
+		SELECT 
+		    S.HULLNUM as projNo,        
+		    S.UID as val,           
+		    S.TRIALKEY as description,        
+		    SI.REGOWNER as regOwner,         
+		    SI.SHIPTYPE as shipType,          
+		    SI.PROJSEQ as projSeq,          
+		    S.STATUS
+		FROM OFFSCHEDULERINFO S 
+		INNER JOIN OFFSCHEDULERVERSIONINFO SVI ON (S.SCHEDULERVERSIONINFOUID = SVI.UID AND S.REVNUM = SVI.PLANREVNUM)
+		LEFT OUTER JOIN OFFSCHETRIALINFO TI ON (S.UID = TI.SCHEDULERINFOUID)
+		LEFT OUTER JOIN OFFSHIPINFO SI ON (S.HULLNUM = SI.SHIPNUM)
+		LEFT OUTER JOIN OFFUSERINFO UI ON (S.INSERTBY = UI.UID)
+		<!-- WHERE S.STATUS = 'ACT' -->
+		WHERE S.TRIALKEY <![CDATA[ <> ]]> ''
+		ORDER BY S.INSERTDATE desc
+		
+		<!-- 전체 호선리스트 -->
+		<!-- SELECT SHIPNUM AS VAL, SHIPNUM AS DESCRIPTION FROM SHIPINFO WHERE TITLE <![CDATA[ <> ]]> ''; -->
+	</select>
+	
+	<select id="getCrewMealResultList" parameterType="RegistrationCrewRequestBean" resultType="RegistrationCrewRequestBean">
+	  SELECT
+			merged.UID,
+			merged.SCHEDULERINFOUID AS schedulerInfoUid,
+			merged.PROJ_NO AS projNo,
+			merged.TRIALKEY AS trialKey,	
+			merged.KIND AS kind,
+			merged.DOMESTIC_YN AS domesticYn,
+			merged.department,
+			merged.MEAL_DATE AS mealDate,
+			merged.ORDER_STATUS AS orderStatus,
+			merged.ORDER_DATE AS orderDate,
+			merged.ORDER_UID AS orderUid,
+			merged.DEL_YN AS deleteYn,
+			merged.COMMENT AS comment,
+			merged.REG_DATE AS inputDate,
+			merged.REG_USERNAME AS inputUid
+		FROM (
+			SELECT 
+				NULL AS UID,
+				userinfo.SCHEDULERINFOUID,
+				userinfo.PROJ_NO,
+				userinfo.TRIALKEY,
+				NULL AS KIND,
+				NULL AS DOMESTIC_YN,
+				userinfo.DEPT_NAME AS department,
+				DATE(userinfo.MEAL_DATE) AS MEAL_DATE,
+				NULL AS ORDER_STATUS,
+				NULL AS ORDER_DATE,
+				NULL AS ORDER_UID,
+				'N' AS DEL_YN,
+				NULL AS COMMENT,
+				NULL AS REG_DATE,
+				NULL AS REG_USERNAME
+			  FROM offmobile_meal_userinfo userinfo
+			 WHERE 1=1
+			   AND userinfo.MEAL_DATE <![CDATA[ >= ]]> #{inDate}
+			   AND userinfo.MEAL_DATE <![CDATA[ <= ]]> #{outDate}
+			 <if test="ship != null and ship != '' and ship != 'ALL'">
+				AND userinfo.PROJ_NO <![CDATA[ = ]]> #{ship}
+			 </if>
+		) merged
+		WHERE merged.department IS NOT NULL AND merged.department <![CDATA[ <> ]]> ''
+		ORDER BY merged.MEAL_DATE, merged.department
+	</select>
+	
+	<select id="getCrewPlanQtyList" parameterType="int" resultType = "RegistrationCrewQtyBean">
+		SELECT null as UID, null as scheCrewUid, null as TRIALKEY, null as planMealTime,
+		null as planMealGubun, null as planMealDate, 0 as planMealQty
+		FROM dual
+	</select>
+	
+	<select id="getCrewResultQtyList" parameterType="RegistrationCrewQtyBean" resultType = "RegistrationCrewQtyBean">
+		SELECT MEAL_TIME as resultMealTime,
+			   MEAL_GUBUN as resultMealGubun, MEAL_DATE as resultMealDate, 
+			   DEPT_NAME as department, PROJ_NO as projNo, COUNT(*) as resultMealQty
+		  FROM offmobile_meal_userinfo
+		 where 1=1
+		 <if test="projNo != null and projNo != ''">
+		   AND PROJ_NO <![CDATA[ = ]]> #{projNo}
+		 </if>
+		 <if test="inDate != null and inDate != ''">
+		   AND MEAL_DATE <![CDATA[ >= ]]> #{inDate}
+		 </if>
+		 <if test="outDate != null and outDate != ''">
+		   AND MEAL_DATE <![CDATA[ <= ]]> #{outDate}
+		 </if>
+		 <if test="mealDate != null and mealDate != ''">
+		   AND MEAL_DATE <![CDATA[ = ]]> #{mealDate}
+		 </if>
+		 group by PROJ_NO, DEPT_NAME, MEAL_TIME, MEAL_GUBUN, MEAL_DATE
+	</select>	
+	
+	<select id="getCrewMealListCnt" resultType="int">
+		SELECT FOUND_ROWS()
+	</select>
+	
+	<select id="getCrewResultDeptCombinations" parameterType="RegistrationCrewRequestBean" resultType="RegistrationCrewRequestBean">
+		SELECT DISTINCT 
+			PROJ_NO AS projNo,
+			DATE(MEAL_DATE) AS mealDate,
+			DEPT_NAME AS department
+		  FROM offmobile_meal_userinfo
+		 WHERE 1=1
+		 <if test="inDate != null and inDate != ''">
+			AND MEAL_DATE <![CDATA[ >= ]]> #{inDate}
+		 </if>
+		 <if test="outDate != null and outDate != ''">
+			AND MEAL_DATE <![CDATA[ <= ]]> #{outDate}
+		 </if>
+		 <if test="ship != null and ship != '' and ship != 'ALL'">
+			AND PROJ_NO <![CDATA[ = ]]> #{ship}
+		 </if>
+		 ORDER BY projNo, mealDate, department
+	</select>	
+	
+</mapper>
