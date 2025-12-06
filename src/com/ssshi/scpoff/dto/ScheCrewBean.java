@@ -35,7 +35,21 @@ public class ScheCrewBean {
 	private int orgUid;
 	private String revKind;
 	private String revDay;
+	private String trialKey;
+	private String project;
+	private String projNo;
 	
+	private String gender;
+	
+	
+	 
+	
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 	public int getUid() {
 		return uid;
 	}
@@ -209,5 +223,23 @@ public class ScheCrewBean {
 	}
 	public void setRevDay(String revDay) {
 		this.revDay = revDay;
+	}
+	public String getTrialKey() {
+		return trialKey;
+	}
+	public void setTrialKey(String trialKey) {
+		this.trialKey = trialKey;
+	}
+	public String getProject() {
+		return project;
+	}
+	public void setProject(String project) {
+		this.project = project;
+	}
+	public String getProjNo() {
+		return projNo;
+	}
+	public void setProjNo(String projNo) {
+		this.projNo = projNo;
 	}
 }

@@ -607,6 +607,7 @@ public class ScheDao {
 			String sql = "SELECT UID, SCHEDULERINFOUID, KIND, COMPANY, DEPARTMENT, NAME, RANK, IDNO" + 
 					"		, WORKTYPE1, WORKTYPE2, MAINSUB, FOODSTYLE, PERSONNO" + 
 					"		, PHONE, ISPLAN, ISNONE, INSERTDATE, INSERTBY, UPDATEDATE, UPDATEBY" + 
+					"		, TRIALKEY, PROJECT, PROJNO" + 
 					"	FROM SCHECREW" + 
 					"	WHERE SCHEDULERINFOUID IN (" + uidList + ")";
 			
@@ -637,6 +638,9 @@ public class ScheDao {
 				row.setInsertBy(rs.getInt(idx++));
 				row.setUpdateDate(rs.getString(idx++));
 				row.setUpdateBy(rs.getInt(idx++));
+				row.setTrialKey(rs.getString(idx++));
+				row.setProject(rs.getString(idx++));
+				row.setProjNo(rs.getString(idx++));
 				
 				list.add(row);
 			}
@@ -1978,9 +1982,11 @@ public class ScheDao {
 				ScheCrewBean bean = list.get(i);
 				
 				sql = "INSERT INTO SCHECREW (SCHEDULERINFOUID, KIND, COMPANY, DEPARTMENT, NAME, RANK, IDNO, WORKTYPE1, WORKTYPE2," + 
-						"		MAINSUB, FOODSTYLE, PERSONNO, PHONE, ISPLAN, ISNONE, INSERTDATE, INSERTBY, UPDATEDATE, UPDATEBY)" + 
+						"		MAINSUB, FOODSTYLE, PERSONNO, PHONE, ISPLAN, ISNONE, INSERTDATE, INSERTBY, UPDATEDATE, UPDATEBY," + 
+						"		TRIALKEY, PROJECT, PROJNO)" + 
 						"	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?," + 
-						"		?, ?, ?, ?, ?, 'N', ?, ?, ?, ?)";
+						"		?, ?, ?, ?, ?, 'N', ?, ?, ?, ?," + 
+						"		?, ?, ?)";
 				
 				idx = 1;
 				stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -2002,6 +2008,9 @@ public class ScheDao {
 				stmt.setInt(idx++, bean.getInsertBy());
 				stmt.setString(idx++, bean.getUpdateDate());
 				stmt.setInt(idx++, bean.getUpdateBy());
+				stmt.setString(idx++, bean.getTrialKey());
+				stmt.setString(idx++, bean.getProject());
+				stmt.setString(idx++, bean.getProjNo());
 				stmt.executeUpdate();
 				rs = stmt.getGeneratedKeys();
 				
